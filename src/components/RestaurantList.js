@@ -51,7 +51,7 @@ class RestaurantList extends Component {
             position => {
                 const location = JSON.stringify(position);
 
-                console.log("Current Position ",position.coords)
+
 
                 this.props.getRestaurantData(position.coords.latitude,position.coords.longitude);
             },
@@ -87,7 +87,7 @@ class RestaurantList extends Component {
     }
 
     onChange=(data)=>{
-        console.log("HSHSHHSHDataROOROR",data)
+
 
 
         this.props.getFilterRestaurantData(data);
@@ -127,7 +127,7 @@ class RestaurantList extends Component {
 
                 <FlatList
 
-                    data={ this.props.registerData }
+                    data={ this.props.listData }
 
                     ItemSeparatorComponent = {this.FlatListItemSeparator}
 
@@ -177,7 +177,7 @@ const mapStateToProps = (state) =>{
         isSignup:state.isSignup,
         error:state.error,
         isFetching:state.isFetching,
-        registerData:state.registerData
+        listData:state.listData
 
     }
 }

@@ -1,8 +1,8 @@
-import {SIGNUP_PENDING,SIGNUP_ERROR,SIGNUP_SUCCESS} from "../actions/MyAction";
+import {LIST_PENDING,LIST_ERROR,LIST_SUCCESS} from "../actions/MyAction";
 
 const initialState ={
 
-    registerData :[],
+    listData :[],
     isSignup:false,
     isFetching : false,
     error : false
@@ -10,30 +10,30 @@ const initialState ={
 
 // Reducer are pure function, it will return modified copy of the state.
 export default function AuthReducer (state = initialState, action){
-    console.log("KSKKSKSKKSKSKS",action)
+
     switch(action.type){
 
-        case SIGNUP_PENDING:
+        case LIST_PENDING:
             return{
                 ...state,
                 isSignup:false,
-                registerData: [],
+                listData: [],
                 isFetching : true,
                 error : false
             }
-        case SIGNUP_SUCCESS:
+        case LIST_SUCCESS:
             return{
                 ...state,
                 isSignup:true,
-                registerData: action.data.data.results,
+                listData: action.data.data.results,
                 isFetching : false,
                 error : false
             }
-        case SIGNUP_ERROR:
+        case LIST_ERROR:
             return{
                 ...state,
                 isSignup:false,
-                registerData: [],
+                listData: [],
                 isFetching : false,
                 error : true
             }

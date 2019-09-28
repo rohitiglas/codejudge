@@ -1,33 +1,33 @@
 // Sign up
 import {Alert} from "react-native";
 
-export const SIGNUP_PENDING = 'SIGNUP_PENDING';
-export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
-export const SIGNUP_ERROR = 'SIGNUP_ERROR';
+export const LIST_PENDING = 'LIST_PENDING';
+export const LIST_SUCCESS = 'LIST_SUCCESS';
+export const LIST_ERROR = 'LIST_ERROR';
 import axios from 'axios';
 
-let apiKey='Enter your google place api key';
+let apiKey='';
 
 
 
-function signupPending(msg) {
+function listPending(msg) {
     return {
-        type: SIGNUP_PENDING,
+        type: LIST_PENDING,
         message: msg
     };
 }
 
-function signupSuccess(data) {
+function listSuccess(data) {
     return {
-        type: SIGNUP_SUCCESS,
+        type: LIST_SUCCESS,
         data
     };
 }
 
-function signupError(signupError) {
+function listError(listError) {
     return {
-        type: SIGNUP_ERROR,
-        signupError
+        type: LIST_ERROR,
+        listError
     }
 }
 
@@ -37,13 +37,13 @@ export function getRestaurantData(lat,long){
 
 
     return dispatch => {
-        dispatch(signupPending())
+        dispatch(listPending())
         let url =  'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+lat+','+long+'&radius=2500&type=restaurant&key='+apiKey;
         axios.get(url)
             .then(res => {
-                dispatch(signupSuccess(res))
+                dispatch(listSuccess(res))
             }).catch(err=>{
-            dispatch(signupError(err))
+            dispatch(listError(err))
         })
     };
 }
@@ -52,13 +52,13 @@ export function filterRestaurant(data){
 
 
     return dispatch => {
-        dispatch(signupPending())
+        dispatch(listPending())
         let url =  'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=28.4595,77.0266&radius=2500&type=restaurant&keyword='+data+'&key='+apiKey;
         axios.get(url)
             .then(res => {
-                dispatch(signupSuccess(res))
+                dispatch(listSuccess(res))
             }).catch(err=>{
-            dispatch(signupError(err))
+            dispatch(listError(err))
         })
     };
 }
